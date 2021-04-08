@@ -72,91 +72,92 @@ public class SPARQLUpdateDataBlockParser extends TriGStarParser {
 
 	@Override
 	protected void parseGraph() throws RDFParseException, RDFHandlerException, IOException {
-		int c = readCodePoint();
-		int c2 = peekCodePoint();
-		Resource contextOrSubject = null;
-		boolean foundContextOrSubject = false;
-		if (c == '[') {
-			skipWSC();
-			c2 = readCodePoint();
-			if (c2 == ']') {
-				contextOrSubject = createNode();
-				foundContextOrSubject = true;
-				skipWSC();
-			} else {
-				unread(c2);
-				unread(c);
-			}
-			c = readCodePoint();
-		} else if (c == '<' || TurtleUtil.isPrefixStartChar(c) || (c == ':' && c2 != '-') || (c == '_' && c2 == ':')) {
-			unread(c);
-
-			Value value = parseValue();
-
-			if (value instanceof Resource) {
-				contextOrSubject = (Resource) value;
-				foundContextOrSubject = true;
-			} else {
-				// NOTE: If a user parses Turtle using TriG, then the following
-				// could actually be "Illegal subject name", but it should still
-				// hold
-				reportFatalError("Illegal graph name: " + value);
-			}
-
-			skipWSC();
-			c = readCodePoint();
-		} else {
-			setContext(null);
-		}
-
-		if (c == '{') {
-			setContext(contextOrSubject);
-
-			c = skipWSC();
-
-			if (c != '}') {
-				parseTriples();
-
-				c = skipWSC();
-
-				while (c == '.') {
-					readCodePoint();
-
-					c = skipWSC();
-
-					if (c == '}') {
-						break;
-					}
-
-					parseTriples();
-
-					c = skipWSC();
-				}
-
-				verifyCharacterOrFail(c, "}");
-			}
-		} else {
-			setContext(null);
-
-			// Did not turn out to be a graph, so assign it to subject instead
-			// and
-			// parse from here to triples
-			if (foundContextOrSubject) {
-				subject = contextOrSubject;
-				unread(c);
-				parsePredicateObjectList();
-			}
-			// Or if we didn't recognise anything, just parse as Turtle
-			else {
-				unread(c);
-				parseTriples();
-			}
-		}
-
-		c = peekCodePoint();
-		if (c == '.' || c == '}') {
-			readCodePoint();
-		}
+		// int c = readCodePoint();
+		// int c2 = peekCodePoint();
+		// Resource contextOrSubject = null;
+		// boolean foundContextOrSubject = false;
+		// if (c == '[') {
+		// skipWSC();
+		// c2 = readCodePoint();
+		// if (c2 == ']') {
+		// contextOrSubject = createNode();
+		// foundContextOrSubject = true;
+		// skipWSC();
+		// } else {
+		// unread(c2);
+		// unread(c);
+		// }
+		// c = readCodePoint();
+		// } else if (c == '<' || TurtleUtil.isPrefixStartChar(c) || (c == ':' && c2 != '-') || (c == '_' && c2 == ':'))
+		// {
+		// unread(c);
+		//
+		// Value value = parseValue();
+		//
+		// if (value instanceof Resource) {
+		// contextOrSubject = (Resource) value;
+		// foundContextOrSubject = true;
+		// } else {
+		// // NOTE: If a user parses Turtle using TriG, then the following
+		// // could actually be "Illegal subject name", but it should still
+		// // hold
+		// reportFatalError("Illegal graph name: " + value);
+		// }
+		//
+		// skipWSC();
+		// c = readCodePoint();
+		// } else {
+		// setContext(null);
+		// }
+		//
+		// if (c == '{') {
+		// setContext(contextOrSubject);
+		//
+		// c = skipWSC();
+		//
+		// if (c != '}') {
+		// parseTriples();
+		//
+		// c = skipWSC();
+		//
+		// while (c == '.') {
+		// readCodePoint();
+		//
+		// c = skipWSC();
+		//
+		// if (c == '}') {
+		// break;
+		// }
+		//
+		// parseTriples();
+		//
+		// c = skipWSC();
+		// }
+		//
+		// verifyCharacterOrFail(c, "}");
+		// }
+		// } else {
+		// setContext(null);
+		//
+		// // Did not turn out to be a graph, so assign it to subject instead
+		// // and
+		// // parse from here to triples
+		// if (foundContextOrSubject) {
+		// subject = contextOrSubject;
+		// unread(c);
+		// parsePredicateObjectList();
+		// }
+		// // Or if we didn't recognise anything, just parse as Turtle
+		// else {
+		// unread(c);
+		// parseTriples();
+		// }
+		// }
+		//
+		// c = peekCodePoint();
+		// if (c == '.' || c == '}') {
+		// readCodePoint();
+		// }
 		skipOptionalPeriod();
 	}
 
@@ -198,11 +199,11 @@ public class SPARQLUpdateDataBlockParser extends TriGStarParser {
 	}
 
 	private void skipOptionalPeriod() throws RDFHandlerException, IOException {
-		skipWSC();
-		int c = peekCodePoint();
-		if (c == '.') {
-			readCodePoint();
-		}
+		// skipWSC();
+		// int c = peekCodePoint();
+		// if (c == '.') {
+		// readCodePoint();
+		// }
 	}
 
 	/**

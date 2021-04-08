@@ -295,7 +295,7 @@ public class TurtleParserTest {
 		assertEquals(0, locationListener.getColumnNo());
 		Reader in = new StringReader("<urn:a> <urn:b> <urn:c>.\n");
 		parser.parse(in, baseURI);
-		assertEquals(2, locationListener.getLineNo());
+		assertEquals(1, locationListener.getLineNo());
 		assertEquals(-1, locationListener.getColumnNo());
 	}
 
@@ -315,7 +315,7 @@ public class TurtleParserTest {
 		assertEquals(0, locationListener.getColumnNo());
 		Reader in = new StringReader("<urn:a> <urn:b> <urn:c>.\n<urn:a> <urn:b> <urn:d>.\n");
 		parser.parse(in, baseURI);
-		assertEquals(3, locationListener.getLineNo());
+		assertEquals(2, locationListener.getLineNo());
 		assertEquals(-1, locationListener.getColumnNo());
 	}
 
@@ -335,7 +335,7 @@ public class TurtleParserTest {
 		assertEquals(0, locationListener.getColumnNo());
 		Reader in = new StringReader("# This is just a comment\n");
 		parser.parse(in, baseURI);
-		assertEquals(2, locationListener.getLineNo());
+		assertEquals(1, locationListener.getLineNo());
 		assertEquals(-1, locationListener.getColumnNo());
 	}
 
@@ -345,7 +345,7 @@ public class TurtleParserTest {
 		assertEquals(0, locationListener.getColumnNo());
 		Reader in = new StringReader("# This is just a comment\r");
 		parser.parse(in, baseURI);
-		assertEquals(2, locationListener.getLineNo());
+		assertEquals(1, locationListener.getLineNo());
 		assertEquals(-1, locationListener.getColumnNo());
 	}
 

@@ -796,6 +796,7 @@ public abstract class RDFWriterTest {
 			logger.debug("File size (bytes): " + testFile.length());
 
 		}
+		// BufferedReader reader = new BufferedReader(new FileReader(testFile));
 
 		try (InputStream in = new BufferedInputStream(new FileInputStream(testFile))) {
 

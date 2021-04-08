@@ -476,7 +476,7 @@ public class TurtleUtil {
 		StringBuilder sb = new StringBuilder(sLength);
 
 		while (backSlashIdx != -1) {
-			sb.append(s.substring(startIdx, backSlashIdx));
+			sb.append(s, startIdx, backSlashIdx);
 
 			if (backSlashIdx + 1 >= sLength) {
 				throw new IllegalArgumentException("Unescaped backslash in: " + s);
