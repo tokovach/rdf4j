@@ -44,6 +44,8 @@ public class FedXConfig {
 
 	private int enforceMaxQueryTime = 30;
 
+	private int consumingIterationMax = 1000;
+
 	private boolean enableServiceAsBoundJoin = true;
 
 	private boolean enableMonitoring = false;
@@ -506,5 +508,28 @@ public class FedXConfig {
 	 */
 	public Optional<TaskWrapper> getTaskWrapper() {
 		return Optional.ofNullable(taskWrapper);
+	}
+
+	/**
+	 * Set the max number of results to be consumed by {@link ConsumingIteration}. See
+	 * {@link #getConscumingIterationMax()}.
+	 *
+	 * <p>
+	 * Can only be set before federation initialization.
+	 * </p>
+	 *
+	 * @param max
+	 * @return the current config
+	 */
+	public FedXConfig withConsumingIterationMax(int max) {
+		this.consumingIterationMax = max;
+		return this;
+	}
+
+	/**
+	 * Returns the max number of results to be consumed by {@link ConsumingIteration}
+	 */
+	public int getConscumingIterationMax() {
+		return consumingIterationMax;
 	}
 }

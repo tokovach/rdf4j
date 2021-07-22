@@ -155,8 +155,7 @@ public abstract class TripleSourceBase implements TripleSource {
 			} else if (bindings.size() > 0) {
 				res = new InsertBindingsIteration(res, bindings);
 			}
-
-			resultHolder.set(new ConsumingIteration(res));
+			resultHolder.set(new ConsumingIteration(res, federationContext.getConfig().getConscumingIterationMax()));
 
 		});
 	}

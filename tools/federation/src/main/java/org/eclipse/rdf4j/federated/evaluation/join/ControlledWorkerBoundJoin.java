@@ -122,13 +122,17 @@ public class ControlledWorkerBoundJoin extends ControlledWorkerJoin {
 			bindings = new ArrayList<>(nBindings);
 
 			int count = 0;
-			while (count < nBindings && leftIter.hasNext()) {
+			while (!closed && count < nBindings && leftIter.hasNext()) {
 				bindings.add(leftIter.next());
 				count++;
 			}
 
 			totalBindings += count;
-
+			if (closed) {
+				leftIter.close();
+				scheduler.informFinish(this);
+				return;
+			}
 			phaser.register();
 			scheduler.schedule(taskCreator.getTask(new PhaserHandlingParallelExecutor(this, currentPhaser), bindings));
 		}
