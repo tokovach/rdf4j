@@ -202,6 +202,7 @@ import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSeconds;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSelect;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSelectQuery;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTServiceGraphPattern;
+import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStdev;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStr;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStrAfter;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStrBefore;
@@ -2521,6 +2522,12 @@ public class TupleExprBuilder extends AbstractASTVisitor {
 	public Object visit(ASTSum node, Object data) throws VisitorException {
 		ValueExpr ve = castToValueExpr(node.jjtGetChild(0).jjtAccept(this, data));
 
+		return new Sum(ve, node.isDistinct());
+	}
+
+	@Override
+	public Object visit(ASTStdev node, Object data) throws VisitorException {
+		ValueExpr ve = castToValueExpr(node.jjtGetChild(0).jjtAccept(this, data));
 		return new Sum(ve, node.isDistinct());
 	}
 

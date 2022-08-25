@@ -22,6 +22,7 @@ import org.eclipse.rdf4j.query.parser.sparql.ast.ASTIRIFunc;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTInsertData;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTOperationContainer;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTServiceGraphPattern;
+import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStdev;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTUnparsedQuadDataBlock;
 import org.eclipse.rdf4j.query.parser.sparql.ast.VisitorException;
 

@@ -224,6 +224,7 @@ TOKEN [IGNORE_CASE] :
 |	<IN: "in">
 |	<COUNT: "count">
 |	<SUM: "sum">
+|	<STDEV: "stdev">
 |	<MIN: "min">
 |	<MAX: "max">
 |	<AVG: "avg">
@@ -1152,6 +1153,7 @@ void Aggregate() #void :
     Count()
 |   Sum()
 |   Min()
+|   Stdev()
 |   Max()
 |   Avg()
 |   Sample()
@@ -1169,6 +1171,12 @@ void Sum() :
 {}
 {
     <SUM> <LPAREN> [ <DISTINCT> {jjtThis.setDistinct(true);} ] Expression() <RPAREN>
+}
+
+void Stdev() :
+{}
+{
+    <STDEV> <LPAREN> [ <DISTINCT> {jjtThis.setDistinct(true);} ] Expression() <RPAREN>
 }
 
 void Min() :

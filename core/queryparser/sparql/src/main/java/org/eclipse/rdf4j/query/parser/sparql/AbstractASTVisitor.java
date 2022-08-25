@@ -128,6 +128,7 @@ import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSeconds;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSelect;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTSelectQuery;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTServiceGraphPattern;
+import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStdev;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStr;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStrAfter;
 import org.eclipse.rdf4j.query.parser.sparql.ast.ASTStrBefore;
@@ -833,6 +834,11 @@ public abstract class AbstractASTVisitor implements SyntaxTreeBuilderVisitor {
 
 	@Override
 	public Object visit(ASTSum node, Object data) throws VisitorException {
+		return node.childrenAccept(this, data);
+	}
+
+	@Override
+	public Object visit(ASTStdev node, Object data) throws VisitorException {
 		return node.childrenAccept(this, data);
 	}
 

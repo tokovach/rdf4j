@@ -261,6 +261,11 @@ public class SyntaxTreeBuilderDefaultVisitor implements SyntaxTreeBuilderVisitor
 		return defaultVisit(node, data);
 	}
 
+	@Override
+	public Object visit(ASTStdev node, Object data) throws VisitorException {
+		return defaultVisit(node, data);
+	}
+
 	public Object visit(ASTMin node, Object data) throws VisitorException {
 		return defaultVisit(node, data);
 	}
